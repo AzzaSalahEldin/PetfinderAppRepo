@@ -65,7 +65,7 @@ Maven
 Chrome or Firefox installed
 Internet connection
 # to check stable build run 
-  got to github Actions and check workflows
+ 
 # Run via Maven
 
 mvn clean test
