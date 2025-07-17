@@ -1,17 +1,18 @@
 package config;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigManager {
     private static final Properties props = new Properties();
 
     static {
-        try {
-            FileInputStream fis = new FileInputStream("config/config.properties");
-            props.load(fis);
-            fis.close();
+        try (InputStream input = ConfigManager.class.getClassLoader().getResourceAsStream("config/config.properties")) {
+            if (input == null) {
+                throw new RuntimeException("config/config.properties not found in classpath");
+            }
+            props.load(input);
         } catch (IOException e) {
             throw new RuntimeException("Failed to load config.properties", e);
         }

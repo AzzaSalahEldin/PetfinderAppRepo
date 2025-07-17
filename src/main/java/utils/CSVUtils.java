@@ -1,25 +1,26 @@
 package utils;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import java.io.FileInputStream;
 
-public class ExcelUtils {
-    public static Object[][] getTestData(String sheetName) throws Exception {
-        FileInputStream fis = new FileInputStream("testdata/TestData.xlsx");
-        Workbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet(sheetName);
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-        int rows = sheet.getPhysicalNumberOfRows();
-        int cols = sheet.getRow(0).getPhysicalNumberOfCells();
-        Object[][] data = new Object[rows - 1][cols];
-
-        for (int i = 1; i < rows; i++) {
-            Row row = sheet.getRow(i);
-            for (int j = 0; j < cols; j++) {
-                data[i - 1][j] = row.getCell(j).toString();
-            }
+public class CSVUtils {
+    public static Object[][] readCSV(String fileName) throws IOException {
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream("testdata/" + fileName);
+        if (inputStream == null) {
+            throw new FileNotFoundException("File not found in resources/testdata: " + fileName);
         }
-        workbook.close();
-        return data;
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        List<Object[]> data = new ArrayList<>();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] row = line.split(",");
+            data.add(row);
+        }
+        reader.close();
+        return data.toArray(new Object[0][]);
     }
+
 }
