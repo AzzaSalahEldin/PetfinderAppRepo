@@ -20,14 +20,14 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        ScreenshotUtil.clearOldScreenshots(); // clear before any test starts
+        ScreenshotUtil.clearOldScreenshots();
     }
-    @Override
-    public void onTestFailure(ITestResult result) {
-        String methodName = result.getMethod().getMethodName();
-        File screenshot = ScreenshotUtil.takeScreenshot(methodName);
-        attachScreenshotToAllure(screenshot);
-    }
+//    @Override
+//    public void onTestFailure(ITestResult result) {
+//        String methodName = result.getMethod().getMethodName();
+//        File screenshot = ScreenshotUtil.takeScreenshot(methodName);
+//        attachScreenshotToAllure(screenshot);
+//    }
 
     @Attachment(value = "Screenshot on Failure", type = "image/png")
     private byte[] attachScreenshotToAllure(File screenshotFile) {
@@ -53,11 +53,11 @@ public class TestListener implements ITestListener {
         attachTextLog("Test skipped: " + testName + " | Reason: " + result.getThrowable());
     }
 
-    @Override
-    public void onStart(ITestContext context) {
-        System.out.println("[START] Test Suite: " + context.getName());
-        attachTextLog("Test Suite Started: " + context.getName());
-    }
+//    @Override
+//    public void onStart(ITestContext context) {
+//        System.out.println("[START] Test Suite: " + context.getName());
+//        attachTextLog("Test Suite Started: " + context.getName());
+//    }
 
     @Override
     public void onFinish(ITestContext context) {
