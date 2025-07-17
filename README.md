@@ -1,4 +1,4 @@
-# Selenium TestNG Automation Framework
+# Selenium TestNG Automation Framework for PetFinder Web App
 
 This project is a TestNG-based Selenium automation framework designed to test the **Login** and **User Registration** functionalities of a web application. The test data is provided using CSV files through a custom DataProvider.
 ---
