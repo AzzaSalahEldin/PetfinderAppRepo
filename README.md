@@ -1,7 +1,6 @@
 # Selenium TestNG Automation Framework
 
 This project is a TestNG-based Selenium automation framework designed to test the **Login** and **User Registration** functionalities of a web application. The test data is provided using CSV files through a custom DataProvider.
-
 ---
 
 ## ✅ Features
@@ -12,6 +11,8 @@ This project is a TestNG-based Selenium automation framework designed to test th
 - Page Object Model (POM) design pattern for maintainable and scalable tests
 - Modular test structure for Login and Registration flows
 - Random email generation to avoid test collisions during registration
+- Allure Reporting
+- following best practices like Page Object Model, Singleton Pattern, Config Management, and Parallel Execution.
 
 ---
 
@@ -71,3 +72,8 @@ mvn clean test
 # Run via TestNG Suite 
 
 mvn test -DsuiteXmlFile=testng.xml
+
+# Generate Allure Report
+	allure generate allure-results --clean -o allure-report
+  allure open allure-report
+
