@@ -64,9 +64,10 @@ Maven
 Chrome or Firefox installed
 Internet connection
 
-**Run via Maven**
+# Run via Maven
 
 mvn clean test
 
-**Run via TestNG Suite **
+# Run via TestNG Suite 
+
 mvn test -DsuiteXmlFile=testng.xml
