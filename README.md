@@ -6,7 +6,7 @@ This project is a TestNG-based Selenium automation framework designed to test th
 ## ✅ Features
 
 - **Selenium WebDriver** for browser automation
-- **TestNG** framework for test execution and annotations
+- **TestNG** framework for single/parallel test execution and annotations
 - **CSV Data-Driven Testing** via custom `CSVDataProviders` utility
 - Page Object Model (POM) design pattern for maintainable and scalable tests
 - Modular test structure for Login and Registration flows
@@ -68,6 +68,9 @@ Internet connection
 # Run via Maven
 
 mvn clean test
+#  Parallel Test Execution
+
+<suite name="ParallelSuite" parallel="classes" thread-count="5">
 
 # Run via TestNG Suite 
 
