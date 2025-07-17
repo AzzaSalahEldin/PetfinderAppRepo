@@ -70,7 +70,7 @@ Internet connection
 mvn clean test
 #  Parallel Test Execution
 
-<suite name="ParallelSuite" parallel="classes" thread-count="5">
+**  <suite name="ParallelSuite" parallel="classes" thread-count="5">**
 
 # Run via TestNG Suite 
 
