@@ -1,10 +1,16 @@
 name: Java CI with Maven
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:  # Manual trigger enabled
+  # schedule:
+  #   - cron: '0 2 * * *'  # Commented out to disable auto schedule
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -23,11 +29,3 @@ jobs:
 
     - name: Run Tests
       run: mvn test
-    - name: Generate Allure Report
-      run: mvn allure:report
-
-    - name: Upload Allure Report Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: allure-report
-        path: target/site/allure-maven-plugin/
