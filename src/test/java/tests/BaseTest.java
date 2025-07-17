@@ -4,6 +4,7 @@ import config.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pages.RegistrationPage;
+import utils.ScreenshotUtil;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -19,5 +20,9 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         DriverManager.quitDriver();
+    }
+    @BeforeSuite
+    public void beforeSuite() {
+        ScreenshotUtil.clearOldScreenshots();
     }
 }

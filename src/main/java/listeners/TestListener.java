@@ -14,6 +14,16 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
+        String testName = result.getMethod().getMethodName();
+        ScreenshotUtil.takeScreenshot(testName);
+    }
+
+    @Override
+    public void onStart(ITestContext context) {
+        ScreenshotUtil.clearOldScreenshots(); // clear before any test starts
+    }
+    @Override
+    public void onTestFailure(ITestResult result) {
         String methodName = result.getMethod().getMethodName();
         File screenshot = ScreenshotUtil.takeScreenshot(methodName);
         attachScreenshotToAllure(screenshot);
