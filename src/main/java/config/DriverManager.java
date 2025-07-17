@@ -12,8 +12,10 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,10 +54,16 @@ public class DriverManager {
                 chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
                 chromeOptions.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
-                chromeOptions.addArguments("–-incognito");
-                chromeOptions.addArguments("–-no-first-run");
-                chromeOptions.addArguments("–-disable-popup-blocking");
-                chromeOptions.addArguments("–-disable-save-password-bubble"); // May help in older versions
+                chromeOptions.addArguments("--incognito");
+                chromeOptions.addArguments("--no-first-run");
+                chromeOptions.addArguments("--disable-popup-blocking");
+                chromeOptions.addArguments("--disable-save-password-bubble");
+                try {
+                    String tempProfile = Files.createTempDirectory("chrome-user-data").toString();
+                    chromeOptions.addArguments("--user-data-dir=" + tempProfile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 prefs.put("credentials_enable_service", false);
                 prefs.put("profile.password_manager_enabled", false);
                 chromeOptions.setExperimentalOption("prefs", prefs);
@@ -65,6 +73,7 @@ public class DriverManager {
                         "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
                 );
                 return chromeDriver;
+
 
             case "firefox":
                 FirefoxProfile profile = new FirefoxProfile();
