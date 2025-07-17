@@ -35,7 +35,8 @@ public class BasePage {
             List<WebElement> elements = driver.findElements(locator);
             for (WebElement sb : elements) {
                 if(sb.isDisplayed()== true){
-                    wait.until(ExpectedConditions.elementToBeClickable(sb)).click();
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", sb);
+//                    wait.until(ExpectedConditions.elementToBeClickable(sb)).click();
                     break;
                 }
             }
