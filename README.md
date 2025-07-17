@@ -68,9 +68,6 @@ Internet connection
 # Run via Maven
 
 mvn clean test
-#  Parallel Test Execution
-
-**  <suite name="ParallelSuite" parallel="classes" thread-count="5">**
 
 # Run via TestNG Suite 
 
